@@ -34,9 +34,13 @@ const Register = () => {
       userData.number &&
       userData.role
     ) {
-      if (userData.password == userData.confirmPassword) {
+      if (userData.password === userData.confirmPassword) {
         const response = await axios.post("http://localhost:8008/register", {
-          userData,
+          name: userData.name,
+          email: userData.email,
+          password: userData.password,
+          role: userData.role,
+          number: userData.number
         });
         console.log(response);
         if (response.data.success) {

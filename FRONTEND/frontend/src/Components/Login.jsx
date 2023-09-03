@@ -17,7 +17,11 @@ const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (userData.email && userData.password) {
-            const response = await axios.post("http://localhost:8008/login", { userData });
+            const response = await axios.post("http://localhost:8008/login", {  name: userData.name,
+            email: userData.email,
+            password: userData.password,
+            role: userData.role,
+            number: userData.number });
             if (response.data.success) {
                 setUserData({ email: "", password: "" })
                 router('/')

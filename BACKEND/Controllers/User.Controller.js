@@ -4,8 +4,8 @@ import bcrypt from 'bcrypt'
 
 export const Register = async (req, res) => {
   try {
-    const { name, email, password, role, number } = userData;
-    const {userData}= req.body
+    const { name, email, password, role, number } = req.body;
+    console.log(name, email, password, role, number);
 
     if (!name || !email || !password || !role || !number) {
       return res.status(400).json({
@@ -15,7 +15,7 @@ export const Register = async (req, res) => {
     }
 
 
-    const isEmailExist = await UserModal.findOne({ email: email });
+    const isEmailExist = await UserModal.findOne({ email: email }).exec();
 
     if (isEmailExist) {
       return res.status(400).json({
@@ -47,7 +47,7 @@ export const Register = async (req, res) => {
 
 export const Login = async (req, res) => {
   try {
-    const { email, password } = req.body.userData;
+    const { email, password } = req.body;
     if (!email || !password)
       return res.json({
         success: false,

@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import morgan from 'morgan'
 import { Login, Register, getCurrentUser } from './Controllers/User.Controller.js'
+import { addProduct } from './Controllers/Product.Controller.js'
 
 const app = express();
 app.use(express.json());
@@ -20,6 +21,8 @@ app.post('/register', Register)
 app.post('/login', Login)
 
 app.post('/get-current-user', getCurrentUser)
+
+app.post('/add-product', addProduct)
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("Connected to DB!");
